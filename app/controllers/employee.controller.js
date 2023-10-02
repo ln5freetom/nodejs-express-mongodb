@@ -4,17 +4,36 @@ const Employee = db.employee;
 // Create and Save a new Employee
 exports.create = (req, res) => {
     // Validate request
-/*    if (!req.body.firstName) {
+    if (!req.body.firstName) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
-    }*/
+    }
 
-    // Create a Employee
-/*    const employee = new Employee({
+    // Create a Tutorial
+    const employee = new Employee({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email
-    });*/
+    });
+
+    // Save employee in the database
+    employee
+        .save(employee)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the Tutorial."
+            });
+        });
+};
+
+
+// Create and Save new Employees
+exports.createList = (req, res) => {
+
     for (var key in req.body) {
         if (req.body.hasOwnProperty(key)) {
             const employee = new Employee({
@@ -31,36 +50,6 @@ exports.create = (req, res) => {
         message:
             "It works."
     });
-
-/*    const employeeList = req.body.employees;
-
-    employeeList.forEach(
-        function (employee){
-            employee
-                .save(employee)
-                .then(data => {
-                    res.send(data);
-                })
-                .catch(err => {
-                    res.status(500).send({
-                        message:
-                            err.message || "Some error occurred while creating the Employee."
-                    });
-                });
-        }
-    );*/
-    // Save employee in the database
-/*    employee
-        .save(employee)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Employee."
-            });
-        });*/
 };
 
 // Retrieve all Employees from the database.

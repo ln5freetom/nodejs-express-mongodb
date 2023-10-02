@@ -6,6 +6,9 @@ module.exports = app => {
     // Create a new Employee
     router.post("/", employee.create);
 
+    // create employees
+    router.post("/list", employee.createList);
+
     // Retrieve all Tutorials
     router.get("/", employee.findAll);
 
