@@ -3,11 +3,18 @@ const cors = require("cors");
 
 const app = express();
 
+// if use  following corsOption, there will be warning angular warning
+// Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource
+// remove option in order to make it work.
+// https://www.stackhawk.com/blog/angular-cors-guide-examples-and-how-to-enable-it/
+/*
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:8080"
 };
-
 app.use(cors(corsOptions));
+*/
+
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
